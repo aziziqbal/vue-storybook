@@ -1,0 +1,373 @@
+import { Meta, Preview, Props, Story } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { boolean, select, text } from '@storybook/addon-knobs';
+import { uiIcons } from '@/lib/icons';
+import ChecDropdown from '../../components/ChecDropdown.vue';
+import ChecFormField from '../../components/ChecFormField.vue';
+import ChecModal from '../../components/ChecModal.vue';
+const onClick = action('option selected');
+
+<Meta title="Form fields/Dropdown" component={ChecDropdown} />
+
+# Dropdown
+
+<details>
+<summary>
+Todo list
+</summary>
+
+- Add a "Select All" option
+- Implement keyboard navigation
+
+</details>
+
+<Props of={ChecDropdown} />
+
+# Default:
+
+<Preview>
+  <Story name="Default">
+    {{
+      components: {
+        ChecDropdown,
+        ChecFormField
+      },
+      props: {
+        label: {
+          default: text('Label', 'Label'),
+        },
+        required: {
+          default: boolean('Required', false)
+        },
+        multiselect: {
+          default: boolean('Multiselect', false)
+        },
+        placeholder: {
+          default: text('Placeholder', ''),
+        },
+        errored: {
+          default: boolean('Errored', false),
+        },
+        disabled: {
+          default: boolean('Disabled', false),
+        },
+        loading: {
+          default: boolean('Loading', false),
+        },
+        showSearch: {
+          default: boolean('Show search', false),
+        },
+        icon: {
+          default: select('Icon', [null, ...Object.keys(uiIcons)]),
+        },
+        appendLabel: {
+          default: text('Action label', 'Click me'),
+        },
+        tooltip: {
+          default: text('Tooltip copy', 'Lorem Ipsum Dolor'),
+        },
+        minimizedLabel: {
+          default: boolean('Minimized Label Override', false)
+        },
+      },
+      data() {
+        return {
+          value: null,
+          search: '',
+          options: [
+            { value: 'steak', label: 'Steak' },
+            { value: 'chicken', label: 'Chicken' },
+            { value: 'fish', label: 'Fish' },
+            { value: 'apple', label: 'Apple (Sold Out)', disabled: true },
+            { value: 'pear', label: 'Pear' },
+            { value: 'kiwi', label: 'Kiwis' },
+            { value: 'blueberry', label: 'Blueberries' },
+            { value: 'bread', label: 'Bread' },
+          ],
+          onClick,
+        }
+      },
+      computed: {
+        model: {
+          get() {
+            if (this.multiselect) {
+              if (Array.isArray(this.value)) {
+                return this.value;
+              }
+              if (!this.value) {
+                return [];
+              }
+              return [this.value];
+            }
+            if (Array.isArray(this.value) && this.value.length > 0) {
+              return this.value[0];
+            }
+            return typeof this.value === 'string' ? this.value : '';
+          },
+          set(value) {
+            this.value = value;
+          },
+        },
+        variant() {
+          return this.disabled ? 'disabled' : this.errored ? 'error' : '';
+        }
+      },
+      methods: {
+        handleSearch(...attrs) {
+          action('Search')(...attrs);
+          this.search = attrs[0];
+        },
+        handleScrolledToBottom() {
+          action('Reached the bottom of the options list')();
+        },
+        handleClick(e, value) {
+          return action(`Text field action button was clicked with: ${value}`)();
+        }
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full bg-gray-100">
+          <ChecFormField
+            :appendLabel="appendLabel"
+            :tooltip="tooltip"
+            :icon="icon"
+            @action-click="handleClick"
+            class="w-full max-w-sm"
+          >
+            <ChecDropdown
+              :label="label"
+              :required="required"
+              :multiselect="multiselect"
+              :placeholder="placeholder"
+              :variant="variant"
+              :show-search="showSearch"
+              :search-value="search"
+              @search="handleSearch"
+              :loading="loading"
+              name="example-1"
+              class="max-w-md"
+              v-model="model"
+              :options="options"
+              :minimized-label="minimizedLabel"
+              @input="onClick"
+              @scroll-to-bottom="handleScrolledToBottom"
+            />
+          </ChecFormField>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+## No label
+
+<Preview>
+  <Story name="No label">
+    {{
+      components: {
+        ChecDropdown,
+      },
+      data() {
+        return {
+          option: "",
+          options: [
+            { value: 't2', label: 'T2 Ticket' },
+            { value: 't1', label: 'T1 Ticket (Coming Soon)', disabled: true }
+          ],
+          onClick,
+        }
+      },
+      props: {
+        label: {
+          default: text('Label', ''),
+        }
+      },
+      methods: {
+        handleScrolledToBottom() {
+          action('Reached the bottom of the options list')();
+        },
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full bg-gray-100">
+          <ChecDropdown
+            :label="label"
+            name="example-1"
+            class="max-w-md"
+            v-model="option"
+            :options="options"
+            @input="onClick"
+            @scroll-to-bottom="handleScrolledToBottom"
+            />
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+# In context and required
+
+<Preview>
+  <Story name="In context and required">
+    {{
+      components: {
+        ChecDropdown,
+      },
+      data() {
+        return {
+          option: "",
+          options: [
+            { value: 't2', label: 'T2 Ticket' },
+            { value: 't1', label: 'T1 Ticket (Coming Soon)', disabled: true }
+          ],
+          onClick,
+        }
+      },
+      props: {
+        label: {
+          default: text('Label', 'Label'),
+        }
+      },
+      template: `
+        <div class="p-16 bg-gray-100 text-center">
+          <div>Some content</div>
+          <ChecDropdown
+            name="example-3"
+            :label="label"
+            class="max-w-md mx-auto"
+            v-model="option"
+            :options="options"
+            ChecOptionClass="text-left"
+            :required="true"
+            @input="onClick"
+            />
+            <div>Some more content</div>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+# As multi-select
+
+<Preview>
+  <Story name="As multi-select">
+    {{
+      components: {
+        ChecDropdown,
+      },
+      data() {
+        return {
+          optionGroups: {
+            default: [
+              {
+                value: 'meats',
+                label: 'Meat',
+                group: [
+                  { value: 'steak', label: 'Steak (Sold Out)', disabled: true },
+                  { value: 'chicken', label: 'Chicken' },
+                  { value: 'fish', label: 'Fish' },
+                ],
+              },
+              { label: 'Fruit', group: [
+                { value: 'apple', label: 'Apple' },
+                { value: 'pear', label: 'Pear' },
+                { value: 'kiwi', label: 'Kiwis' },
+                { value: 'blueberry', label: 'Blueberries' }
+              ]},
+              { value: 'bread', label: 'Bread' },
+            ],
+            longnames: [
+              { value: 'steak', label: 'Beautiful succulent steak from massaged cows', disabled: true },
+              { value: 'chicken', label: 'Completely free run chicken, with 1000 hectares of field per chicken' },
+              { value: 'fish', label: 'Sustainably farmed fish from the icy blue waters of the Foveaux Strait' },
+            ],
+          },
+          selected: ['chicken'],
+          onClick,
+        };
+      },
+      props: {
+        label: {
+          default: text('Label', 'Label'),
+        },
+        optionSet: {
+          default: select('Option set', ['Default', 'Long names'], 'Default'),
+        },
+      },
+      computed: {
+        options() {
+          const key = this.optionSet
+            ? this.optionSet.toLowerCase().replace(' ', '')
+            : 'default';
+          console.log(key);
+          return this.optionGroups[key];
+        },
+      },
+      template: `
+        <div class="my-8 p-16 bg-gray-100 text-center">
+          <ChecDropdown
+            name="example-4"
+            class="max-w-md mx-auto"
+            :label="label"
+            v-model="selected"
+            :options="options"
+            :multiselect="true"
+            ChecOptionClass="text-left"
+            @input="onClick"
+            />
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+# Within a ChecModal, popping out of the overflow
+
+<Preview>
+  <Story name="Within a ChecModal popping out of overflow">
+    {{
+      components: {
+        ChecModal,
+        ChecDropdown,
+      },
+      props: {
+        showSearch: {
+          default: boolean('Show search', true),
+        },
+      },
+      data() {
+        return {
+          events: [],
+          search: '',
+          options:  ["api-keys.create","api-keys.delete","api-keys.update","assets.create","assets.delete","checkouts.capture","developer.logs.delete","discounts.create","discounts.delete","giftcards.create","giftcards.redeem","orders.fulfill.digital","orders.fulfill.physical","orders.refund","orders.update","products.assets.create","products.assets.delete","products.assets.update","products.create","products.delete","products.update"]
+          .map(option => ({ value: option, label: option}))
+        }
+      },
+      methods: {
+        handleSearch(...attrs) {
+          action('Search')(...attrs);
+          this.search = attrs[0];
+        },
+        handleScrolledToBottom() {
+          action('Reached the bottom of the options list')();
+        }
+      },
+      template: `
+          <ChecModal
+            width="xl"
+            class="w-full h-full relative"
+            innerClass="bg-gray-100"
+          >
+            <div>
+              <h2 class="mb-4">Event(s)</h2>
+              <ChecDropdown
+                v-model="events"
+                name="example-dropdown"
+                :options="options"
+                :show-search="showSearch"
+                :search-value="search"
+                multiselect
+                @search="handleSearch"
+                @scroll-to-bottom="handleScrolledToBottom"
+              />
+            </div>
+          </ChecModal>
+      `
+    }}
+  </Story>
+</Preview>

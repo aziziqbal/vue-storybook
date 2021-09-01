@@ -1,0 +1,282 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { select, text, number } from '@storybook/addon-knobs';
+import ChecAccordion from '../../components/ChecAccordion.vue';
+import ChecCard from '../../components/ChecCard.vue';
+import ChecButton from '../../components/ChecButton.vue';
+import TextField from '../../components/TextField.vue';
+
+<Meta title="Components/Accordion" component={ChecAccordion} />
+
+# Accordion Component
+
+<Props of={ChecAccordion} />
+
+<Preview>
+  <Story name="Default">
+    {{
+      components: {
+        ChecAccordion
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+        variant: {
+          default: select('Variant', ['button', 'switch'], 'button'),
+        },
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full">
+          <ChecAccordion
+            :title="title"
+            :subtitle="subtitle"
+            :variant="variant"
+            class="w-1/2"
+          >
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor imperdiet pellentesque. Mauris quam enim, vehicula ac felis vel, tempus tincidunt massa.</p>
+            <p>Mauris eget mi neque. Nullam eu est a velit mattis cursus vel nec purus. Pellentesque tincidunt ornare auctor.</p>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Within a card">
+    {{
+      components: {
+        ChecAccordion,
+        ChecCard,
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+        variant: {
+          default: select('Variant', ['button', 'switch'], 'button'),
+        },
+      },
+      template: `
+        <ChecCard class="mx-auto max-w-xl mt-8" tailwind="p-4" borders="none">
+          <ChecAccordion
+            :title="title"
+            :subtitle="subtitle"
+            :variant="variant"
+          >
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor imperdiet pellentesque. Mauris quam enim, vehicula ac felis vel, tempus tincidunt massa.</p>
+            <p>Mauris eget mi neque. Nullam eu est a velit mattis cursus vel nec purus. Pellentesque tincidunt ornare auctor.</p>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="With Form">
+    {{
+      components: {
+        ChecAccordion,
+        ChecButton,
+        TextField,
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full">
+          <ChecAccordion
+            :title="title"
+            :subtitle="subtitle"
+            class="w-1/2"
+          >
+            <h2 class="text-lg mb-4 font-bold">Set up your account</h2>
+            <label class="block mb-4">
+              First name
+              <TextField value="Leslie" class="w-full" />
+            </label>
+            <label class="block mb-4">
+              Surname
+              <TextField value="Lawless" class="w-full" />
+            </label>
+            <label class="block mb-4">
+              Email address
+              <TextField value="lezlie@example.com" class="w-full" />
+            </label>
+            <ChecButton color="green" class="mt-8">Submit</ChecButton>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Start Active">
+    {{
+      components: {
+        ChecAccordion
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+      },
+      template: `
+        <div class="p-16 flex flex-col items-center w-full">
+          <ChecAccordion
+            :title="title"
+            :subtitle="subtitle"
+            :open="true"
+            class="w-1/2"
+          >
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor imperdiet pellentesque. Mauris quam enim, vehicula ac felis vel, tempus tincidunt massa.</p>
+            <p>Mauris eget mi neque. Nullam eu est a velit mattis cursus vel nec purus. Pellentesque tincidunt ornare auctor.</p>
+          </ChecAccordion>
+          <ChecAccordion
+            :title="title"
+            :subtitle="subtitle"
+            class="w-1/2"
+          >
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor imperdiet pellentesque. Mauris quam enim, vehicula ac felis vel, tempus tincidunt massa.</p>
+            <p>Mauris eget mi neque. Nullam eu est a velit mattis cursus vel nec purus. Pellentesque tincidunt ornare auctor.</p>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="List">
+    {{
+      components: {
+        ChecAccordion,
+        ChecButton,
+        TextField,
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+        amount: {
+          default: number('Amount', 5),
+        },
+      },
+      template: `
+        <div class="p-16 flex flex-col items-center w-full">
+          <ChecAccordion
+            v-for="n in amount"
+            :title="title"
+            :subtitle="subtitle"
+            class="w-1/2"
+          >
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor imperdiet pellentesque. Mauris quam enim, vehicula ac felis vel, tempus tincidunt massa.</p>
+            <p>Mauris eget mi neque. Nullam eu est a velit mattis cursus vel nec purus. Pellentesque tincidunt ornare auctor.</p>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="With Card">
+    {{
+      components: {
+        ChecAccordion,
+        ChecCard,
+        ChecButton,
+        TextField,
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+        amount: {
+          default: number('Amount', 1),
+        },
+      },
+      template: `
+        <div class="p-16 flex flex-col items-center w-full">
+          <ChecAccordion
+            v-for="n in amount"
+            :title="title"
+            :subtitle="subtitle"
+            class="w-1/2"
+          >
+            <ChecCard :borders="'none'" class="w-full h-40">
+              <p class="self-center mx-auto">Nothing here</p>
+            </ChecCard>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="With dynamic height">
+    {{
+      components: {
+        ChecAccordion,
+        TextField,
+      },
+      props: {
+        title: {
+          default: text('Title', 'Accordion Title'),
+        },
+        subtitle: {
+          default: text('Subtitle', 'Accordion Subtitle'),
+        },
+        amount: {
+          default: number('Amount', 1),
+        },
+      },
+      data() {
+        return { paragraphs: 1 };
+      },
+      computed: {
+        paragraphRange() {
+          return (new Array(parseInt(this.paragraphs, 10))).map((_, n) => n);
+        },
+      },
+      template: `
+        <div class="p-16 flex flex-col items-center w-full">
+          <ChecAccordion
+            v-for="n in amount"
+            :title="title"
+            :subtitle="subtitle"
+            class="w-1/2"
+          >
+            <TextField label="Paragraphs" type="number" v-model="paragraphs" />
+            <p v-for="i in paragraphRange" :key="i">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum, arcu non facilisis elementum,
+              lacus augue vestibulum velit, nec dictum felis ex id purus. Sed volutpat, erat eget congue luctus, lorem
+              quam sollicitudin enim, vel rutrum purus tellus at nisi. Pellentesque volutpat sollicitudin sem, vitae
+              dapibus justo finibus ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+              cubilia curae; Nunc quis elementum felis, vitae vestibulum ligula. Aliquam orci justo, faucibus vel
+              pellentesque cursus, pellentesque a metus. Sed in ornare massa. Aenean mollis ornare odio in accumsan.
+              Etiam at neque nec odio vehicula dictum. Aenean nec libero porttitor, iaculis augue eget, rhoncus sem.
+            </p>
+          </ChecAccordion>
+        </div>`
+    }}
+  </Story>
+</Preview>

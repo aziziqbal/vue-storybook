@@ -1,0 +1,231 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from "@storybook/addon-actions";
+import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
+import ChecAlert from '../../components/ChecAlert.vue';
+import ChecButton from '../../components/ChecButton.vue';
+import ChecIcon from '../../components/ChecIcon.vue';
+
+<Meta title="Components/Alert" component={ChecAlert} />
+
+# Alert
+
+<Props of={ChecAlert} />
+
+<Preview>
+  <Story name="Default">
+    {{
+      components: {
+        ChecAlert,
+        ChecIcon,
+      },
+      data() {
+        return {
+          closed: false,
+        };
+      },
+      methods: {
+        close() {
+          setTimeout(() => this.closed = false, 3000);
+          this.closed = true;
+          return action('Alert closed!')();
+        }
+      },
+      props: {
+        variant: {
+          default: select('Variant', ['success', 'error', 'warning', 'info', 'message', 'news']),
+        },
+        text: {
+          default: text('Text to Alert', 'Text to alert!'),
+        },
+        showSlotIcon: {
+          default: boolean('Show Icon Passed Through Slot', false),
+        },
+        showIcon: {
+          default: boolean('Show Alert Icon', false),
+        },
+        disableClose: {
+          default: boolean('Disable Close Button', false),
+        },
+        showInline: {
+          default: boolean('Show Inline Version', false),
+        },
+      },
+      template: `
+        <div class="mx-auto px-16 pt-6">
+          <ChecAlert
+            v-show="!closed"
+            :variant="variant"
+            :disable-close="disableClose"
+            :show-icon="showIcon"
+            :inline="showInline"
+            @close="close()"
+          >
+            <ChecIcon v-if="showSlotIcon" icon="chec"/>
+              {{ text }}
+          </ChecAlert>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+## Variants
+
+<Preview>
+  <Story name="Variants">
+    {{
+      components: {
+        ChecAlert
+      },
+      data() {
+        return {
+          variants: ['success', 'error', 'warning', 'info', 'message', 'news'],
+          closed: [],
+        };
+      },
+      methods: {
+        close(variant) {
+          if (!this.isClosed(variant)) {
+            this.closed.push(variant);
+            setTimeout(() => {
+              this.closed.splice(this.closed.indexOf(variant), 1);
+            }, 3000)
+          }
+        },
+        isClosed(variant) {
+          return this.closed.includes(variant);
+        },
+        content(variant) {
+          return `${variant.substring(0, 1).toUpperCase()}${variant.substring(1)} variant`;
+        }
+      },
+      template: `
+        <div class="mx-auto px-16 pt-6">
+          <ChecAlert
+            v-for="variant in variants"
+            v-show="!isClosed(variant)"
+            class="my-6"
+            :variant="variant"
+            @close="close(variant)"
+          >
+            {{content(variant)}}
+          </ChecAlert>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+## Inline Variants
+
+<Preview>
+  <Story name="Inline Variants">
+    {{
+      components: {
+        ChecAlert,
+      },
+      data() {
+        return {
+          variants: ['success', 'error', 'warning', 'info', 'message', 'news'],
+          closed: [],
+        };
+      },
+      methods: {
+        close(variant) {
+          if (!this.isClosed(variant)) {
+            this.closed.push(variant);
+            setTimeout(() => {
+              this.closed.splice(this.closed.indexOf(variant), 1);
+            }, 3000)
+          }
+        },
+        isClosed(variant) {
+          return this.closed.includes(variant);
+        },
+        content(variant) {
+          return `${variant.substring(0, 1).toUpperCase()}${variant.substring(1)} variant`;
+        },
+      },
+      props: {
+        showIcon: {
+          default: boolean('Show Icon', true),
+        },
+        disableClose: {
+          default: boolean('Disable Close Button', true),
+        },
+        showIcon: {
+          default: boolean('Show Alert Icon', true),
+        },
+      },
+      template: `
+        <div class="mx-auto px-16 pt-6">
+          <ChecAlert
+            v-for="variant in variants"
+            v-show="!isClosed(variant)"
+            class="my-6"
+            :variant="variant"
+            :inline="true"
+            :disable-close="disableClose"
+            :show-icon="showIcon"
+            @close="close(variant)"
+          >
+            {{content(variant)}}
+          </ChecAlert>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+## Inline with nested buttons
+
+<Preview>
+  <Story name="Inline with nested buttons">
+    {{
+      components: {
+        ChecAlert,
+        ChecButton,
+        ChecIcon,
+      },
+      template: `
+        <div class="mx-auto px-16 pt-6">
+          <ChecAlert
+            class="my-6"
+            variant="info"
+            inline
+          >
+            <ChecIcon icon="info-square" />
+            Hello world, I am some text.
+            <ChecButton
+              color="primary"
+              variant="round"
+              icon="info-square"
+            >
+              Click me
+            </ChecButton>
+          </ChecAlert>
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+## Inline with route link buttons
+
+<Preview>
+  <Story name="Inline with route link buttons">
+    {{
+      components: {
+        ChecAlert,
+        ChecButton,
+      },
+      template: `
+        <div class="mx-auto px-16 pt-6">
+          <ChecAlert
+            class="my-6"
+            variant="info"
+            inline
+          >
+            Hello world, I am <a href="#">a link</a>.
+            <a href="/settings/billing/" class="gateways__alert-button button button--variant-round button--color-red"><span class="button__content"> Add payment method </span></a>
+          </ChecAlert>
+        </div>`
+    }}
+  </Story>
+</Preview>

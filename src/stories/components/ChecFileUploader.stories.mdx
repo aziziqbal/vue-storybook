@@ -1,0 +1,142 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import ChecFileUploader from '../../components/ChecFileUploader.vue';
+import FileRow from '../../components/ChecFileUploader/FileRow.vue';
+
+<Meta title="Form fields/File uploader" component={ChecFileUploader} />
+
+# File uploader
+
+<details>
+
+</details>
+
+<Props of={ChecFileUploader} />
+
+<Preview>
+  <Story name="Default">
+    {{
+      components: {
+        ChecFileUploader,
+      },
+      data() {
+        return {
+          files: [],
+        };
+      },
+      props: {
+        endpoint: {
+          default: text('endpoint', 'https://httpbin.org/post'),
+        },
+      },
+      methods: {
+        change(files) {
+          action('change')(files);
+        },
+        dropzoneEvent(eventName, ...args) {
+          action('dropzone-event')(eventName, args);
+        },
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full h-full bg-white py-20">
+          <ChecFileUploader
+            v-model="files"
+            @dropzone-event="dropzoneEvent"
+            @change="change"
+            :endpoint="endpoint"
+          />
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+
+# File row
+
+<Preview>
+  <Story name="FileRow">
+    {{
+      components: {
+        FileRow,
+      },
+      props: {
+        error: {
+          default: boolean('error', false)
+        },
+        loading: {
+          default: boolean('loading', false)
+        },
+      },
+      methods: {
+        removeFileEvent: action('remove-file'),
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full h-full bg-white py-20">
+          <FileRow
+            :loading="loading"
+            :error="error"
+            @remove-file="removeFileEvent"
+          />
+        </div>`
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Multiple fields">
+    {{
+      components: {
+        ChecFileUploader,
+      },
+      data() {
+        return {
+          filesA: [],
+          filesB: [],
+          filesC: [],
+          filesD: [],
+        };
+      },
+      props: {
+        endpoint: {
+          default: text('endpoint', 'https://httpbin.org/post'),
+        },
+      },
+      methods: {
+        change(files) {
+          action('change')(files);
+        },
+        dropzoneEvent(eventName, ...args) {
+          action('dropzone-event')(eventName, args);
+        },
+      },
+      template: `
+        <div class="p-16 flex justify-center w-full h-full bg-white py-20">
+          <ChecFileUploader
+            v-model="filesA"
+            @dropzone-event="dropzoneEvent"
+            @change="change"
+            :endpoint="endpoint"
+          />
+          <ChecFileUploader
+            v-model="filesB"
+            @dropzone-event="dropzoneEvent"
+            @change="change"
+            :endpoint="endpoint"
+          />
+          <ChecFileUploader
+            v-model="filesC"
+            @dropzone-event="dropzoneEvent"
+            @change="change"
+            :endpoint="endpoint"
+          />
+          <ChecFileUploader
+            v-model="filesD"
+            @dropzone-event="dropzoneEvent"
+            @change="change"
+            :endpoint="endpoint"
+          />
+        </div>`
+    }}
+  </Story>
+</Preview>

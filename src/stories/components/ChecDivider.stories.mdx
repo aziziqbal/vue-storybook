@@ -1,0 +1,38 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { text, boolean } from '@storybook/addon-knobs';
+import ChecDivider from '../../components/ChecDivider.vue';
+
+<Meta title="Components" component={ChecDivider} />
+
+# Divider
+
+<Props of={ChecDivider} />
+
+<Preview>
+  <Story name="Divider">
+    {{
+      components: {
+        ChecDivider
+      },
+      props: {
+        label: {
+          default: text('Label', 'message')
+        },
+        dark: {
+          default: boolean('Dark', false)
+        },
+      },
+      computed: {
+        containerClasses() {
+          return `mx-20 py-10 bg-gray-${this.dark ? '700' : '100'}`;
+        },
+      },
+      template: `
+      <div :class="containerClasses">
+        <ChecDivider :color="dark ? 'dark' : 'light'">
+          {{ label }}
+        </ChecDivider>
+      </div>`
+    }}
+  </Story>
+</Preview>

@@ -1,0 +1,62 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from "@storybook/addon-actions";
+import { number, select, boolean } from '@storybook/addon-knobs';
+import ChecPaginate from '../../components/ChecPaginate.vue';
+
+<Meta title="Components" component={ChecPaginate} />
+
+# Pagination
+
+<Props of={ChecPaginate} />
+
+<Preview>
+  <Story name="Pagination">
+    {{
+      components: {
+        ChecPaginate,
+      },
+      props: {
+        itemCount: {
+          default: number("Total item count", 74)
+        },
+      },
+      computed: {
+        lowestRecord() {
+          return this.pageSize * (this.page - 1);
+        },
+        highestRecord() {
+          const record = this.pageSize * this.page - 1;
+          return record > this.itemCount ? this.itemCount : record;
+        }
+      },
+      data() {
+        return {
+          page: 1,
+          pageSize: 15,
+        }
+      },
+      methods: {
+        choosePage(page) {
+          action("Page chosen")(page);
+          this.page = page;
+        },
+        choosePageSize({ size, page }) {
+          action("Page size chosen")(size);
+          this.pageSize = size;
+          this.choosePage(page);
+        },
+      },
+      template: `
+        <div class="flex flex-col font-lato p-16 bg-gray-100 w-full">
+          <h2 class="my-2 mx-auto">The current page is {{ page }} (records {{ lowestRecord }} - {{ highestRecord }})</h2>
+          <ChecPaginate
+            :page="page"
+            :page-size="pageSize"
+            @choose-page="choosePage"
+            @choose-page-size="choosePageSize"
+            :count="itemCount"
+          />
+        </div>`
+    }}
+  </Story>
+</Preview>

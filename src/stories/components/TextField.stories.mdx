@@ -1,0 +1,454 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from "@storybook/addon-actions";
+import { withKnobs, object, boolean, text, select, number } from '@storybook/addon-knobs';
+import { withInfo } from 'storybook-addon-vue-info'
+import TextField from '../../components/TextField.vue';
+import ChecIcon from '../../components/ChecIcon.vue';
+import ChecFormField from '../../components/ChecFormField.vue';
+import ChecSwitch from '../../components/ChecSwitch.vue';
+import ChecSegmentedButtonsGroup from '../../components/ChecSegmentedButtonsGroup.vue';
+import { uiIcons } from '../../lib/icons';
+
+<Meta title="Form fields/Text field" component={TextField} />
+
+# Text Field
+
+<Props of={TextField} />
+
+# Default
+
+<Preview>
+  <Story name="Defaults">
+    {{
+      props: {
+        errored: {
+          default: boolean('Errored', false)
+        },
+        disabled: {
+          default: boolean('Disabled', false)
+        },
+        label: {
+          default: text('Label', 'Label')
+        },
+        multiline: {
+          default: boolean('Multiline', false)
+        },
+        currency: {
+          default: boolean('Currency', false)
+        },
+        required: {
+          default: boolean('Required', false)
+        },
+        type: {
+          default: select('Type', ['text', 'email', 'password', 'number', 'date', 'color', 'month', 'search', 'tel', 'url', 'week'], 'text')
+        },
+        placeholder: {
+          default: text('Placeholder', ''),
+        },
+        icon: {
+          default: select('Icon', [null, ...Object.keys(uiIcons)]),
+        },
+        styleVariant: {
+          default: select('Style Variant', ['light', 'dark']),
+        },
+        background: {
+          default: select('Background Color', ['light', 'dark']),
+        },
+        currencySymbol: {
+          default: select('Curency Symbol', ['$', '£', '€', '¥', '₹', '฿', 'CHF', 'lei']),
+        },
+        appendLabel: {
+          default: text('Append label', 'Click me'),
+        },
+        tooltip: {
+          default: text('Tooltip copy', 'Lorem Ipsum Dolor'),
+        },
+        minimizedLabel: {
+          default: boolean('Minimized Label Override', false)
+        },
+      },
+      data() {
+        return { inputValue: '' };
+      },
+      computed: {
+        variant() {
+          return this.disabled ? 'disabled' : this.errored ? 'error' : '';
+        }
+      },
+      components: {
+        ChecFormField,
+        TextField,
+      },
+      methods: {
+        handleClick(e, value) {
+          return action(`Text field action button was clicked with: ${value}`)();
+        }
+      },
+      template: `
+        <div class="py-16 flex justify-center" :class="{'bg-gray-700': background === 'dark'}">
+          <ChecFormField
+            :appendLabel="appendLabel"
+            :tooltip="tooltip"
+            :icon="icon"
+            @action-click="handleClick"
+            class="w-full max-w-sm"
+          >
+            <TextField
+              name="input-name"
+              :label="label"
+              :multiline="multiline"
+              placeholder="Example Placeholder"
+              v-model="inputValue"
+              :variant="variant"
+              :style-variant="styleVariant"
+              :type="type"
+              :placeholder="placeholder"
+              :required="required"
+              :minimized-label="minimizedLabel"
+              :currency="currency"
+              :currencySymbol="currencySymbol"
+              />
+          </ChecFormField>
+        </div>`,
+    }}
+  </Story>
+</Preview>
+
+# Multiline
+
+<Preview>
+  <Story name="Multiline">
+    {{
+      props: {
+        inputValue: {
+          default: text('Input Value', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas id pariatur hic? At quod ab necessitatibus sunt!')
+        },
+        errored: {
+          default: boolean('Errored', false)
+        },
+        disabled: {
+          default: boolean('Disabled', false)
+        },
+        label: {
+          default: text('Label', 'Label')
+        },
+        multiline: {
+          default: boolean('Multiline', true)
+        },
+      },
+      computed: {
+        variant() {
+          return this.disabled ? 'disabled' : this.errored ? 'error' : '';
+        }
+      },
+      components: {
+        ChecFormField,
+        TextField
+      },
+      template: `
+        <div class="py-16 flex justify-center">
+          <ChecFormField
+            class="w-full max-w-sm"
+          >
+            <TextField
+              name="input-name"
+              :label="label"
+              :multiline="multiline"
+              placeholder="Example Placeholder"
+              v-model="inputValue"
+              :variant="variant"
+            />
+          </ChecFormField>
+        </div>`,
+    }}
+  </Story>
+</Preview>
+
+# Disabled
+
+<Preview>
+  <Story name="Disabled">
+    {{
+      components: {
+        ChecFormField,
+        TextField
+      },
+      props: {
+        label: {
+          default: text('Label', 'Label')
+        },
+      },
+      template: `
+        <div class="py-16 flex justify-center">
+          <ChecFormField
+            class="w-full max-w-sm"
+          >
+            <TextField
+              name="input-name"
+              :label="label"
+              placeholder="Text Field Placeholder"
+              variant="disabled"
+            />
+          </ChecFormField>
+        </div>`,
+    }}
+  </Story>
+</Preview>
+
+# Dark Variant
+
+<Preview>
+  <Story name="Dark Style Variant">
+    {{
+      components: {
+        ChecFormField,
+        TextField
+      },
+      props: {
+        label: {
+          default: text('Label', 'Label')
+        },
+        errored: {
+          default: boolean('Errored', false)
+        },
+        disabled: {
+          default: boolean('Disabled', false)
+        },
+        multiline: {
+          default: boolean('Multiline', false)
+        },
+        required: {
+          default: boolean('Required', false)
+        },
+      },
+      computed: {
+        variant() {
+          return this.disabled ? 'disabled' : this.errored ? 'error' : '';
+        }
+      },
+      template: `
+        <div class="py-16 flex justify-center bg-gray-700">
+          <ChecFormField
+            class="w-full max-w-sm"
+          >
+            <TextField
+              name="input-name"
+              :label="label"
+              :style-variant="'dark'"
+              placeholder="Text Field Placeholder"
+              :multiline="multiline"
+              :variant="variant"
+              :required="required"
+              bg-gray-700
+            />
+          </ChecFormField>
+        </div>`,
+    }}
+  </Story>
+</Preview>
+
+# Error
+
+<Preview>
+  <Story name="Error">
+    {{
+      props: {
+        inputValue: {
+          default: text('Input Value', '')
+        },
+        label: {
+          default: text('Label', 'Label')
+        },
+      },
+      components: {
+        ChecFormField,
+        TextField
+      },
+      template: `
+        <div class="py-16 flex justify-center">
+          <ChecFormField
+            class="w-full max-w-sm"
+          >
+            <TextField
+              name="input-name"
+              :label="label"
+              class="w-full max-w-sm"
+              placeholder="Text Field Placeholder"
+              variant="error"
+              v-model="inputValue"
+            />
+          </ChecFormField>
+        </div>`,
+    }}
+  </Story>
+</Preview>
+
+# With action button
+
+<Preview>
+  <Story name="With action button">
+    {{
+      props: {
+        inputValue: {
+          default: text('Input value', 'Hello world')
+        },
+        label: {
+          default: text('Label', 'Enter your greeting')
+        },
+        appendLabel: {
+          default: text('Append label', 'Click me'),
+        },
+        tooltip: {
+          default: text('Tooltip copy', 'Lorem Ipsum Dolor'),
+        }
+      },
+      methods: {
+        handleClick(e, value) {
+          return action(`Text field action button was clicked with: ${value}`)();
+        }
+      },
+      components: {
+        TextField,
+        ChecFormField
+      },
+      template: `
+        <div class="py-16 flex justify-center">
+          <ChecFormField
+            class="w-full max-w-sm"
+            :appendLabel="appendLabel"
+            :tooltip="tooltip"
+            @action-click="handleClick"
+          >
+            <TextField
+                :label="label"
+                v-model="inputValue"
+              />
+          </ChecFormField>
+        </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+# Utilising right slot
+
+<Preview>
+  <Story name="Right slot">
+    {{
+      components: {
+        TextField,
+        ChecFormField,
+        ChecIcon,
+        ChecSwitch,
+        ChecSegmentedButtonsGroup
+      },
+      props: {
+        variant: {
+          default: boolean('Disabled', false) ? 'disabled' : '',
+        },
+      },
+      data() {
+        return {
+          inputValue: '',
+          switchState: false,
+          options: [
+            { label: 'Label', value: '1' },
+            { label: 'Label', value: '2' },
+          ],
+          selected: '1',
+        }
+      },
+      template: `
+        <div class="py-16 flex justify-center flex flex-col justify-center">
+          <TextField
+            label="With label"
+            class="self-center w-full max-w-sm mb-4"
+            v-model="inputValue"
+            type="text"
+            :variant="variant"
+          >
+            Label
+          </TextField>
+          <TextField
+            label="With icon"
+            class="self-center w-full max-w-sm mb-4"
+            v-model="inputValue"
+            type="text"
+            :variant="variant"
+          >
+            <ChecIcon icon="calendar" class="w-4 h-4 text-gray-500" />
+          </TextField>
+          <TextField
+            label="With switch"
+            class="self-center w-full max-w-sm mb-4"
+            v-model="inputValue"
+            type="text"
+            :variant="variant"
+          >
+            <ChecSwitch v-model="switchState">Label</ChecSwitch>
+          </TextField>
+          <TextField
+            label="With segmented buttons"
+            class="self-center w-full max-w-sm mb-4"
+            v-model="inputValue"
+            type="text"
+            :variant="variant"
+          >
+            <ChecSegmentedButtonsGroup
+              :options="options"
+              v-model="selected"
+            />
+          </TextField>
+        </div>`,
+    }}
+  </Story>
+</Preview>
+
+# Currency
+
+<Preview>
+  <Story name="Currency">
+    {{
+      props: {
+        inputValue: {
+          default: number('Input Value', 0)
+        },
+        label: {
+          default: text('Label', 'Label')
+        },
+        errored: {
+          default: boolean('Errored', false)
+        },
+        disabled: {
+          default: boolean('Disabled', false)
+        },
+        currency: {
+          default: boolean('Currency', true)
+        },
+        currencySymbol: {
+          default: select('Curency Symbol', ['$', '£', '€', '¥', '₹', '฿', 'CHF', 'lei']),
+        },
+      },
+      computed: {
+        variant() {
+          return this.disabled ? 'disabled' : this.errored ? 'error' : '';
+        }
+      },
+      components: {
+        TextField
+      },
+      template: `
+        <div class="py-16 flex justify-center">
+          <TextField
+            name="input-name"
+            :label="label"
+            class="w-full max-w-sm"
+            :variant="variant"
+            :currency="currency"
+            v-model="inputValue"
+            :currencySymbol="currencySymbol"
+          />
+        </div>`,
+    }}
+  </Story>
+</Preview>

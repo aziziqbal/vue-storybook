@@ -1,0 +1,93 @@
+{
+  "name": "@chec/ui-library",
+  "version": "0.0.96",
+  "license": "BSD-3-Clause",
+  "main": "dist/ui-library.common.js",
+  "homepage": "https://github.com/chec/ui-library",
+  "author": "Chec Platform Inc",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chec/ui-library.git"
+  },
+  "scripts": {
+    "lint": "yarn lint-js && yarn lint-scss",
+    "lint:fix": "yarn lint-js:fix && yarn lint-scss:fix",
+    "lint-js": "vue-cli-service lint",
+    "lint-scss": "stylelint \"src/**/*.scss\" \"src/**/*.vue\"",
+    "lint-js:fix": "vue-cli-service lint --fix",
+    "lint-scss:fix": "stylelint \"src/**/*.scss\" \"src/**/*.vue\" --fix",
+    "build-lib": "yarn translations:download && vue-cli-service build --target lib --name ui-library src/index.js",
+    "build": "yarn translations:download && vue-cli-service storybook:build -c config/storybook",
+    "storybook:build": "yarn build",
+    "serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
+    "translations:download": "node build/translations.js",
+    "storybook:serve": "yarn serve"
+  },
+  "dependencies": {
+    "@chec/eslint-config": "^0.0.0",
+    "@chec/stylelint-config": "^0.0.0",
+    "@localazy/cli": "^1.2.3",
+    "@popperjs/core": "^2.1.1",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "autoprefixer": "^9.7.4",
+    "chart.js": "^2.9.4",
+    "core-js": "^3.4.4",
+    "dropzone": "^5.7.2",
+    "eslint-plugin-vue": "^7.0.0-alpha.6",
+    "filesize": "^6.1.0",
+    "flatpickr": "^4.6.3",
+    "lodash.get": "^4.4.2",
+    "lodash.uniqueid": "^4.0.1",
+    "portal-vue": "^2.1.7",
+    "postcss-assets": "^5.0.0",
+    "prismjs": "^1.21.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "tailwindcss": "1.9.6",
+    "tailwindcss-plugins": "^0.3.0",
+    "tiptap": "^1.30.0",
+    "tiptap-extensions": "^1.33.1",
+    "v-tooltip": "akryum/v-tooltip",
+    "vue": "^2.6.10",
+    "vue-chartjs": "^3.5.1",
+    "vue-flatpickr-component": "^8.1.5",
+    "vue-prism-editor": "^1.2.2",
+    "vuedraggable": "^2.24.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": ">=5.3.0",
+    "@storybook/addon-docs": ">=5.3.0",
+    "@storybook/addon-knobs": ">=5.3.0",
+    "@storybook/addon-links": ">=5.3.0",
+    "@storybook/addon-notes": ">=5.3.0",
+    "@storybook/vue": ">=5.3.0",
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-service": "^4.1.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2",
+    "storybook-addon-vue-info": "^1.4.1",
+    "storybook-vue-router": "^1.0.7",
+    "stylelint": "^13.6.0",
+    "stylelint-config-sass-guidelines": "^7.0.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-webpack-plugin": "^2.0.0",
+    "tailwindcss-plugins": "^0.3.0",
+    "vue-cli-plugin-storybook": "^1.2.0",
+    "vue-i18n": "^8.18.2",
+    "vue-router": "^3.1.5",
+    "vue-svg-loader": "^0.16.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "peerDependencies": {
+    "vue-i18n": "8.x"
+  },
+  "resolutions": {
+    "prosemirror-model": "1.11.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
