@@ -115,7 +115,8 @@ export default {
 
   &--toggled {
     .chec-switch__container {
-      @apply bg-green-400;
+      // @apply bg-green-400;
+      background-image: radial-gradient(76.19% 233.33% at 76.19% 50%, #F6DA2B 0%, #FBEFA4 100%);;
     }
 
     .chec-switch__thumb {
@@ -125,10 +126,10 @@ export default {
 
   &--disabled {
     @apply cursor-not-allowed;
-
     .chec-switch__label,
     .chec-switch__thumb {
       @apply cursor-not-allowed;
+      background-color:#C4C4C4;
     }
 
     &.chec-switch--toggled {
@@ -139,6 +140,7 @@ export default {
 
     .chec-switch__label {
       @apply text-gray-400;
+      background-color:transparent;
     }
   }
 }

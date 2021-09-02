@@ -140,7 +140,8 @@ export default {
     }
 
     &:disabled {
-      @apply bg-white border border-gray-300 cursor-not-allowed;
+      @apply border border-gray-300 cursor-not-allowed;
+       background-color:#E5E5E5;
     }
 
     &:checked::after {

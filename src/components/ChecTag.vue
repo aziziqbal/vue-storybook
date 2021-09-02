@@ -80,6 +80,8 @@ export default {
 
 <style lang="scss">
 .chec-tag {
+  border-radius: 200px;
+
   @apply py-1 px-2 rounded shadow-sm font-bold text-xs border border-white leading-tight;
 
   .chec-tag__dismiss {

@@ -503,6 +503,7 @@ export default {
 
 <style lang="scss">
 .dropdown {
+  border-radius: 8px;
   @apply relative flex items-center w-full text-gray-500 bg-white rounded outline-none cursor-pointer border
     border-gray-200 px-4 flex items-center shadow-sm justify-between text-left;
 

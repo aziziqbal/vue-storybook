@@ -55,3 +55,9 @@ a:hover {
   margin-left: 6px;
   color: #383838;
 }
+.dropdown__down-arrow {
+  color: #f6da2b;
+}
+.chec-switch--disabled {
+  background-color: #e5e5e5;
+}
