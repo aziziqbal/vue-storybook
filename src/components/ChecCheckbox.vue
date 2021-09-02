@@ -108,7 +108,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+.chec-checkbox__input {
+  height:100px;
+}
 .chec-checkbox {
   @apply cursor-pointer flex items-center text-sm text-gray-600 cursor-pointer relative;
 
@@ -142,22 +144,13 @@ export default {
     }
 
     &:checked::after {
-      @apply text-white absolute;
+      @apply text-white absolute; background-color:#F6DA2B;
     }
 
     &:checked {
-      @apply bg-gray-500 border-none;
+      @apply bg-gray-500 border-none; background-color:#F6DA2B;
     }
 
-    &:indeterminate::after,
-    .chec-checkbox--indeterminate &::after {
-      @apply text-white absolute;
-    }
-
-    &:indeterminate,
-    .chec-checkbox--indeterminate & {
-      @apply bg-gray-500 border-none;
-    }
   }
 
   &__check {

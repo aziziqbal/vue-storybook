@@ -90,6 +90,7 @@ export default {
 
 .radio-btn {
   @apply cursor-pointer flex text-sm text-gray-600 items-center;
+  margin-bottom:20px;
 
   &.disabled {
     @apply text-gray-400 cursor-not-allowed;
@@ -107,6 +108,9 @@ export default {
       shadow-inner
       h-4 w-4;
 
+      width: 28px;
+      height: 28px;
+
     &:focus {
       @apply outline-none;
     }
@@ -117,21 +121,26 @@ export default {
 
     &:active {
       @apply bg-gray-300 border border-gray-600;
+      background-image:radial-gradient(121.87% 121.87% at 50% -21.87%, #FFF7C7 0%, #F6DA2B 100%);
     }
 
     &:disabled {
-      @apply bg-white border border-gray-300 cursor-not-allowed;
+      @apply  border border-gray-300 cursor-not-allowed;
+    background-color:#E5E5E5;
     }
   }
 
   &__input:checked::after {
     @apply self-center left-0 right-0 mx-auto w-2 h-2 bg-white rounded-full absolute;
+      background-image:radial-gradient(121.87% 121.87% at 50% -21.87%, #FFF7C7 0%, #F6DA2B 100%);
 
     content: '';
   }
 
   &__input:checked {
     @apply bg-gray-500 border-none;
+          background-image:radial-gradient(121.87% 121.87% at 50% -21.87%, #FFF7C7 0%, #F6DA2B 100%);
+
   }
 
   &__label {

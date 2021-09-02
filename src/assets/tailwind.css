@@ -1,7 +1,7 @@
 @tailwind base;
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
   font-family: lato, sans-serif;
@@ -46,3 +46,12 @@ a:hover {
 
 @tailwind utilities;
 
+.chec-checkbox__input {
+  width: 28px;
+  height: 28px;
+  color: #383838;
+}
+.chec-checkbox__check {
+  margin-left: 6px;
+  color: #383838;
+}
