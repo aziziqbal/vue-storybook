@@ -30,229 +30,120 @@ Todo list
   <Story name="Defaults">
     {{
       components: {
-        ChecButton,
-        ChecIcon
-      },
-      props: {
-        color: {
-          default: select('Color', ['brand', 'primary', 'secondary', 'blue', 'green', 'red', 'purple', 'orange', 'gray', 'white'], 'secondary'),
-        },
-        variant: {
-          default: select('Variant', ['regular', 'small', 'round', 'tag'], 'regular'),
-        },
-        disabled: {
-          default: boolean('Disabled', false),
-        },
-        textOnly: {
-          default: boolean('"Text only" variant', false),
-        },
-        label: {
-          default: text('Label', 'Button text'),
-        },
-        hasIcon: {
-          default: boolean('Show Icon', true),
-        },
-        icon: {
-          default: select('Icon', ['left', 'right', 'down', 'up', 'plus', 'close', 'check', 'more', 'download', 'upload', 'grip', 'minus', 'copy', 'trash'], 'plus'),
-        },
-        iconPosition: {
-          default: select('Icon Position', ['before', 'after'], 'before'),
-        },
-        tagType: {
-          default: select('Tag type', ['button', 'link'], 'button'),
-        },
-        background: {
-          default: select('Background', ['light', 'dark'], 'light'),
-        },
-        outline: {
-          default: boolean('Outlined button', false),
-        },
-      },
-      computed: {
-        bgClass() {
-          return this.background === 'dark' ? 'bg-gray-600' : 'bg-white'
-        },
+        ChecButton
       },
       template: `
-        <div class="p-16 flex justify-center" :class="bgClass">
+        <div class="py-16 px-20 grid grid-cols-3 gap-5 justify-center">
           <chec-button
-            :color="color"
-            :variant="variant"
-            :icon-position="iconPosition"
-            :disabled="disabled"
-            :outline="outline"
-            :icon="hasIcon ? icon : null"
-            :tag-type="tagType"
-            :text-only="textOnly"
+            style="background-image:radial-gradient(121.87% 121.87% at 50% -21.87%, #FFF7C7 0%, #F6DA2B 100%);color:#383838;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
           >
-            {{label}}
+            Primary
+          </chec-button>
+          <chec-button
+            style="background-color:white;;color:#898B96;border:1px solid #898B96;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Secondary
+          </chec-button>
+          <chec-button
+            class="button--text-only"
+            style="color:#898B96;width: 152px;height: 40px;"
+          >
+            Tertiary
           </chec-button>
         </div>
       `,
-      methods: { action: action("clicked") }
     }}
   </Story>
 </Preview>
 
-## States and sizes
-
-This is a button modified using the Color and Variant props.
-
 <Preview>
-  <Story name="States and sizes" decorators={[withKnobs()]}>
+  <Story name="Hover">
     {{
-      props: {
-        outline: {
-          default: boolean('Outlined button', false),
-        },
-        background: {
-          default: select('Background', ['light', 'dark'], 'light'),
-        },
-      },
-      computed: {
-        possibilities() {
-          return makeVariants({
-            color: ['brand', 'primary', 'secondary', 'blue', 'green', 'red', 'purple', 'orange'],
-            variant: ['regular', 'small', 'round', 'tag'],
-          }).map(possibility => ({
-            ...possibility,
-            label: `${possibility.color} - ${possibility.variant}`,
-          }));
-        },
-        bgClass() {
-          return this.background === 'dark' ? 'bg-gray-600' : 'bg-white'
-        },
-      },
       components: {
         ChecButton
       },
       template: `
-        <div class="py-16 px-20 grid grid-cols-4 gap-4 justify-center" :class="bgClass">
-          <div v-for="{ color, variant, label } in possibilities">
-            <chec-button :outline="outline" class="mx-auto capitalize" :color="color" :variant="variant">
-              {{ label }}
-            </chec-button>
-          </div>
-        </div>`,
-        methods: { action: action("clicked") }
-    }}
-  </Story>
-</Preview>
-
-## Full width
-
-<Preview>
-  <Story name="Full width">
-    {{
-      components: {
-        ChecButton,
-      },
-      template: `
-      <div class="py-16 px-8 justify-center">
-        <chec-button class="w-full" color="primary">
-          Full width
-        </chec-button>
-      </div>`,
-    }}
-  </Story>
-</Preview>
-
-## With icons
-
-<Preview>
-  <Story name="With icons" decorators={[withKnobs()]}>
-    {{
-      components: {
-        ChecButton,
-        CloseIcon
-      },
-      props: {
-        color: {
-          default: select('Color', ['brand', 'primary', 'secondary', 'blue', 'green', 'red', 'purple', 'orange'], 'secondary'),
-        },
-        variant: {
-          default: select('Variant', ['regular', 'small', 'round'], 'regular'),
-        },
-        hasIcon: {
-          default: boolean('Show Icon', true),
-        },
-      },
-      template: `
-        <div class="py-16 justify-center">
-          <chec-button class="mx-auto mb-4" :color="color" :variant="variant">
-            Bigger, amazing
-            <template v-if="hasIcon" v-slot:icon>
-              <CloseIcon />
-            </template>
+        <div class="py-16 px-20 grid grid-cols-3 gap-5 justify-center">
+          <chec-button
+            style="background-image:radial-gradient(121.87% 121.87% at 50% -21.87%, #FFF7C7 0%, #F6DA2B 100%);color:#383838;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Primary
           </chec-button>
-          <chec-button class="mx-auto" :color="color" :variant="variant" icon-position="after">
-            Bigger, amazing
-            <template v-if="hasIcon" v-slot:icon>
-              <CloseIcon />
-            </template>
+          <chec-button
+            style="background-color:white;;color:#F6DA2B;border:1px solid #F6DA2B;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Secondary
           </chec-button>
-        </div>`,
-        methods: { action: action("clicked") }
+          <chec-button
+            class="button--text-only"
+            style="color:#F6DA2B;width: 152px;height: 40px;"
+          >
+            Tertiary
+          </chec-button>
+        </div>
+      `,
     }}
   </Story>
 </Preview>
 
-## Icon only
 
 <Preview>
-  <Story name="Icon only" decorators={[withKnobs()]}>
-    {{
-      components: {
-        ChecButton,
-        CloseIcon
-      },
-      props: {
-        color: {
-          default: select('Color', ['brand', 'primary', 'secondary', 'blue', 'green', 'red', 'purple', 'orange'], 'brand'),
-        },
-      },
-      template: `
-        <div class="py-16 justify-center">
-          <chec-button class="mx-auto mb-4" :color="color" variant="small">
-            <template v-slot:icon>
-              <CloseIcon />
-            </template>
-          </chec-button>
-        </div>`,
-        methods: { action: action("clicked") }
-    }}
-  </Story>
-</Preview>
-
-## Slot content
-
-<Preview>
-  <Story name="Slot Content" decorators={[withKnobs({escapeHTML: false})]}>
+  <Story name="Active">
     {{
       components: {
         ChecButton
       },
-      props: {
-        color: {
-          default: select('Color', ['brand', 'primary', 'secondary', 'blue', 'green', 'red', 'purple', 'orange'], 'secondary'),
-        },
-        variant: {
-          default: select('Variant', ['regular', 'small', 'round'], 'regular'),
-        },
-        disabled: {
-          default: select('Disabled', [true, false], false),
-        },
-        text: {
-          default: text('Slot Content', '<b>Bold text</b>'),
-        },
-      },
       template: `
-        <div class="py-16 flex justify-center">
-          <chec-button :color="color" :variant="variant" :disabled="disabled" v-html="text">
+        <div class="py-16 px-20 grid grid-cols-3 gap-5 justify-center">
+          <chec-button
+            style="background-color:#FBEFA4;border: 1px solid #F6DA2B;color:#383838;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Primary
+          </chec-button>
+          <chec-button
+            style="background-color:white;;color:#F6DA2B;border:1px solid #F6DA2B;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Secondary
+          </chec-button>
+          <chec-button
+            class="button--text-only"
+            style="color:#F6DA2B;width: 152px;height: 40px;"
+          >
+            Tertiary
           </chec-button>
         </div>
       `,
-      methods: { action: action("clicked") }
+    }}
+  </Story>
+</Preview>
+
+
+<Preview>
+  <Story name="Disabled">
+    {{
+      components: {
+        ChecButton
+      },
+      template: `
+        <div class="py-16 px-20 grid grid-cols-3 gap-5 justify-center">
+          <chec-button
+            style="background-color:#F6DA2B;color:#FFFFFF;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Primary
+          </chec-button>
+          <chec-button
+            style="background-color:white;;color:#898B96;border:1px solid #898B96;width: 152px;height: 40px;box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.3);border-radius: 5px;"
+          >
+            Secondary
+          </chec-button>
+          <chec-button
+            class="button--text-only"
+            style="color:#F6DA2B;width: 152px;height: 40px;"
+          >
+            Tertiary
+          </chec-button>
+        </div>
+      `,
     }}
   </Story>
 </Preview>

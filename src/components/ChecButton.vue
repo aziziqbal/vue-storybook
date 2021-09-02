@@ -43,6 +43,7 @@ export default {
           'orange',
           'white',
           'gray',
+          '#FFF7C7',
         ].includes(color);
       },
       default: 'secondary',
