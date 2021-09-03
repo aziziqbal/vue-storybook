@@ -61,3 +61,11 @@ a:hover {
 .chec-switch--disabled {
   background-color: #e5e5e5;
 }
+.text-field__input {
+  height: 32px;
+  /* border-radius: 8px; */
+}
+.text-field__input--has-placeholder {
+  font-style: italic;
+  /* color: #e5e5e5; */
+}
