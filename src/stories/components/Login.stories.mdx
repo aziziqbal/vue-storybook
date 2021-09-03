@@ -1,0 +1,82 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import {
+  withKnobs,
+  object,
+  boolean,
+  text,
+  select,
+  number
+} from "@storybook/addon-knobs";
+import { withInfo } from "storybook-addon-vue-info";
+import TextField from "../../components/TextField.vue";
+import ChecIcon from "../../components/ChecIcon.vue";
+import ChecFormField from "../../components/ChecFormField.vue";
+import ChecSwitch from "../../components/ChecSwitch.vue";
+import ChecSegmentedButtonsGroup from "../../components/ChecSegmentedButtonsGroup.vue";
+import { uiIcons } from "../../lib/icons";
+
+<Meta title="Form fields/Form Login" component={TextField} />
+
+# Text Field
+
+<Props of={TextField} />
+
+# Default
+
+<Preview>
+  <Story name="Defaults">
+    {{
+      props: {
+        disabled: {
+          default: boolean("Disabled", false)
+        }
+      },
+      data() {
+        return { inputValue: "" };
+      },
+      computed: {
+        variant() {
+          return this.disabled ? "disabled" : this.errored ? "error" : "";
+        }
+      },
+      components: {
+        ChecFormField,
+        TextField
+      },
+      methods: {
+        handleClick(e, value) {
+          return action(
+            `Text field action button was clicked with: ${value}`
+          )();
+        }
+      },
+      template: `
+        <div class="py-16 flex justify-center">
+          <ChecFormField
+            @action-click="handleClick"
+            class="w-full max-w-sm"
+          >
+            <div style="margin-bottom:7px;font-size: 14px;">
+              Username / Email
+            </div>
+            <TextField
+              name="input-name"
+              placeholder="Username / Email"
+              v-model="inputValue"
+              style="border: 1px solid #E5E5E5;border-radius: 8px;"
+              />
+            <div style="margin-bottom:7px;margin-top:20px;font-size: 14px;">
+              Password
+            </div>
+            <TextField
+              name="input-name"
+              placeholder="Password"
+              v-model="inputValue"
+              style="border: 1px solid #E5E5E5;border-radius: 8px;"
+              />
+          </ChecFormField>
+        </div>`
+    }}
+  </Story>
+</Preview>
