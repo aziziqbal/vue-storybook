@@ -28,30 +28,8 @@ import { uiIcons } from "../../lib/icons";
   <Story name="Defaults">
     {{
       props: {
-        errored: {
-          default: boolean("Errored", false)
-        },
         disabled: {
           default: boolean("Disabled", false)
-        },
-        type: {
-          default: select(
-            "Type",
-            [
-              "text",
-              "email",
-              "password",
-              "number",
-              "date",
-              "color",
-              "month",
-              "search",
-              "tel",
-              "url",
-              "week"
-            ],
-            "text"
-          )
         }
       },
       data() {
@@ -76,9 +54,6 @@ import { uiIcons } from "../../lib/icons";
       template: `
         <div class="py-16 flex justify-center">
           <ChecFormField
-            :appendLabel="appendLabel"
-            :tooltip="tooltip"
-            :icon="icon"
             @action-click="handleClick"
             class="w-full max-w-sm"
           >
@@ -86,10 +61,7 @@ import { uiIcons } from "../../lib/icons";
               name="input-name"
               placeholder="Placeholder"
               v-model="inputValue"
-              :variant="variant"
-              :style-variant="styleVariant"
-              :type="type"
-              style="border: 1px solid #E5E5E5;"
+              style="border: 1px solid #E5E5E5;border-radius: 8px;"
               />
           </ChecFormField>
         </div>`
@@ -103,30 +75,8 @@ import { uiIcons } from "../../lib/icons";
   <Story name="Focus">
     {{
       props: {
-        errored: {
-          default: boolean("Errored", false)
-        },
         disabled: {
           default: boolean("Disabled", false)
-        },
-        type: {
-          default: select(
-            "Type",
-            [
-              "text",
-              "email",
-              "password",
-              "number",
-              "date",
-              "color",
-              "month",
-              "search",
-              "tel",
-              "url",
-              "week"
-            ],
-            "text"
-          )
         }
       },
       data() {
@@ -151,9 +101,6 @@ import { uiIcons } from "../../lib/icons";
       template: `
         <div class="py-16 flex justify-center">
           <ChecFormField
-            :appendLabel="appendLabel"
-            :tooltip="tooltip"
-            :icon="icon"
             @action-click="handleClick"
             class="w-full max-w-sm"
           >
@@ -161,10 +108,7 @@ import { uiIcons } from "../../lib/icons";
               name="input-name"
               placeholder="Placeholder"
               v-model="inputValue"
-              :variant="variant"
-              :style-variant="styleVariant"
-              :type="type"
-              style="border:1px solid #F6DA2B"
+              style="border:1px solid #F6DA2B;border-radius: 8px;"
               />
           </ChecFormField>
         </div>`
@@ -207,9 +151,9 @@ import { uiIcons } from "../../lib/icons";
             v-model="inputValue"
             type="text"
             :variant="variant"
-            style="border:1px solid #CA3724"
+            style="border:1px solid #CA3724;border-radius: 8px;"
           >
-            <ChecIcon icon="check-square" class="w-4 h-4" style="background-color#219653" />
+            <ChecIcon icon="check-square" class="w-4 h-4" style="color#219653" />
           </TextField>
         </div>`
     }}
@@ -251,6 +195,7 @@ import { uiIcons } from "../../lib/icons";
             v-model="inputValue"
             type="text"
             :variant="variant"
+            style="border:1px solid #CA3724;border-radius: 8px;"
           >
             <ChecIcon icon="close-square" class="w-4 h-4 text-gray-500" />
           </TextField>
