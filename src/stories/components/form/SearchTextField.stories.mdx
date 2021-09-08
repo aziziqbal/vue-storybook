@@ -1,0 +1,34 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import {
+  withKnobs,
+  object,
+  boolean,
+  text,
+  select
+} from "@storybook/addon-knobs";
+import { withInfo } from "storybook-addon-vue-info";
+import ChecSwitch from "@/components/ChecSwitch.vue";
+import ChecCard from "@/components/ChecCard.vue";
+import SearchTextField from "@/components/Adeptforms/SearchTextField.vue";
+
+<Meta title="Components/Form/Search TextField" />
+
+#
+
+<Preview>
+  <Story name="Default">
+    {{
+      components: {
+        SearchTextField
+      },
+      template: `
+        <div class="py-16 flex justify-center font-lato">
+            <SearchTextField>
+                asd
+            </SearchTextField>
+        </div>
+      `
+    }}
+  </Story>
+</Preview>

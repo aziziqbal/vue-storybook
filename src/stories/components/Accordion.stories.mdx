@@ -1,0 +1,65 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import {
+  withKnobs,
+  object,
+  boolean,
+  text,
+  select
+} from "@storybook/addon-knobs";
+import { withInfo } from "storybook-addon-vue-info";
+import Accordion from "@/components/Adeptforms/accordion.vue";
+import AccordionItem from "@/components/Adeptforms/accordion-item.vue";
+
+<Meta title="Components/Accordion" />
+
+# Card
+
+<Props of={Accordion} />
+
+# Default
+
+<Preview>
+  <Story name="Default">
+    {{
+      components: {
+        Accordion,
+        AccordionItem
+      },
+      template: `
+        <div class="m-16 font-lato">
+          <Accordion>
+            <AccordionItem>
+              <template slot="accordion-trigger">
+                <h3>Item 1</h3>
+              </template>
+              <template slot="accordion-content">
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              </template>
+            </AccordionItem>
+          </Accordion>
+          <Accordion>
+            <AccordionItem>
+              <template slot="accordion-trigger">
+                <h3>Item 2</h3>
+              </template>
+              <template slot="accordion-content">
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              </template>
+            </AccordionItem>
+          </Accordion>
+          <Accordion>
+            <AccordionItem>
+              <template slot="accordion-trigger">
+                <h3>Item 3</h3>
+              </template>
+              <template slot="accordion-content">
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              </template>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      `
+    }}
+  </Story>
+</Preview>
