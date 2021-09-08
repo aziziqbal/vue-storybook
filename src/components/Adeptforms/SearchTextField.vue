@@ -17,25 +17,6 @@ export default {
   components: {
     ChecIcon,
   },
-  // props: {
-  //   height: {
-  //     type: String,
-  //     default: '',
-  //   },
-  //   width: {
-  //     type: String,
-  //     default: '',
-  //   },
-  //   bgColor: {
-  //     type: String,
-  //     default: '',
-  //   },
-  // },
-  // computed: {
-  //   classObject() {
-  //     return `height:${this.height}px;background-color:${this.bgColor};width:${this.width}px;`;
-  //   },
-  // },
 };
 </script>
 

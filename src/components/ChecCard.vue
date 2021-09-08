@@ -28,9 +28,6 @@ export default {
       return `height:${this.height}px;background-color:${this.bgColor};width:${this.width}px;`;
     },
   },
-  mounted() {
-    console.log('tinggi : ', this.height);
-  },
 };
 </script>
 
