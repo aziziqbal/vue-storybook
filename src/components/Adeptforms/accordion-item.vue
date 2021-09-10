@@ -5,7 +5,6 @@
       :class="{'accordion__trigger_active': visible}"
       @click="open"
     >
-      <!-- This slot will handle the title/header of the accordion and is the part you click on -->
       <slot name="accordion-trigger" />
     </div>
 
@@ -21,7 +20,6 @@
         class="accordion__content"
       >
         <ul>
-          <!-- This slot will handle all the content that is passed to the accordion -->
           <slot name="accordion-content" />
         </ul>
       </div>
@@ -70,16 +68,20 @@ export default {
 <style lang="scss" scoped>
 .accordion__item {
   cursor: pointer;
-  padding: 10px 20px 10px 40px;
-  // border-bottom: 1px solid #ebebeb;
+  padding: 13px 13px 13px 20px;
   position: relative;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #383838;
 }
-
 .accordion__trigger {
   display: flex;
   justify-content: space-between;
 }
-
+.accordion__content {
+  padding-top:10px;
+}
 .accordion-enter-active,
 .accordion-leave-active {
   will-change: height, opacity;

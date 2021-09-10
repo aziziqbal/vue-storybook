@@ -12,6 +12,7 @@ import ChecCard from "@/components/ChecCard.vue";
 import SearchTextField from "@/components/Adeptforms/SearchTextField.vue";
 import Accordion from "@/components/Adeptforms/accordion.vue";
 import AccordionItem from "@/components/Adeptforms/accordion-item.vue";
+import ChecIcon from "../../components/ChecIcon.vue";
 
 <Meta title="Components/Form Builder" />
 
@@ -24,14 +25,15 @@ import AccordionItem from "@/components/Adeptforms/accordion-item.vue";
         SearchTextField,
         ChecCard,
         Accordion,
-        AccordionItem
+        AccordionItem,
+        ChecIcon
       },
       props: {
         height: {
           default: text("Height", 500)
         },
         width: {
-          default: text("Width", 600)
+          default: text("Width", 300)
         },
         bgColor: {
           default: text("Background Color", "white")
@@ -39,32 +41,108 @@ import AccordionItem from "@/components/Adeptforms/accordion-item.vue";
       },
       template: `
         <div class="py-16 flex justify-center font-lato">
-          <ChecCard :height="height" :width="width" :bgColor="bgColor">
-            <div class="mb-2 text-sm">
-              Add Fields
+          <chec-card :height="height" :width="width" :bgColor="bgColor">
+            <div class="mb-4 whitespace-no-wrap text-sm leading-5 text-black-500">
+              <i class="align-middle" style="height: 25px;
+  width: 25px;
+  background-color: #FFFFFF;
+  border-radius: 50%;border: 1px solid #E5E5E5;
+  display: inline-block;">
+                      <chec-icon icon="double-right" style="height:10px;width:10px;margin-top:7px;margin-left:7px;margin-right:auto;"/></i>
+              <span class="pl-2 text-sm" style="font-size:12px;margin-top:4px;padding-top:15px;">Add Fields</span>
             </div>
-            <SearchTextField class="mb-5" />
+            <search-text-field class="mb-5" />
             <accordion>
               <accordion-item>
                 <template slot="accordion-trigger">
-                  <h3>Basic Components</h3>
+                  <div>Basic Components</div>
                 </template>
                 <template slot="accordion-content">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
                 </template>
               </accordion-item>
             </accordion>
             <accordion>
               <accordion-item>
                 <template slot="accordion-trigger">
-                  <h3>Date and Time Components</h3>
+                  <div>Date and Time Components</div>
                 </template>
                 <template slot="accordion-content">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Today’s Date</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
                 </template>
               </accordion-item>
             </accordion>
-          </ChecCard>
+            <accordion>
+              <accordion-item>
+                <template slot="accordion-trigger">
+                  <div>Miscellaneous Components</div>
+                </template>
+                <template slot="accordion-content">
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                  <div class="flex mb-2" style="background: #FAFBFD;border: 1px solid #E5E5E5; border-radius: 5px;padding:10px;">
+                    <img class="flex-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADzSURBVHgBzZI9bsJAEIVnxnZkOucAlpImSpSGNJZdhRvAFThBSEXJEXwEBCeAlsqd3eEG8VNxA1tCIATY5m2BRIexKPikmZ03q30arYYJuK7bwKHibpg5DsNwpMGkB9FBb0nV6Nq2zXpRFK0sy9qT4SY1NGlcbo/bl9HrT5zecsEgATz6gmkswzASE01haQqxrxH/UnnWKslF1b4Waz6d/lGmtY9Zu8w01wg9iCc2Suafb4Wu+yit3erbT6Z1i+5AVynP83cyzTjfH8aQKqjsZ4uIhfVJ2fO8DvbgD70BVQDr08T7MSvhOE4LznWqRhBFUXAGLtZMtNzxdrgAAAAASUVORK5CYII=">
+                    <div class="px-5 flex-1" style="font-size:12px;">Short Text</div>
+                    <div class="flex-none" style="float:right;text-align:right;">
+                      <chec-icon icon="drag" style="height:10px;width:10px;margin-top:5px;"/>
+                    </div>
+                  </div>
+                </template>
+              </accordion-item>
+            </accordion>
+          </chec-card>
         </div>
       `
     }}

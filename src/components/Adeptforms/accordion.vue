@@ -27,6 +27,7 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
+  border-radius:0px;
 
   &__item:last-child {
     border-bottom: none;
